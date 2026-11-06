@@ -1,18 +1,18 @@
-# Frammento da adattare nel compose.yaml del progetto (NON avviarlo direttamente).
-# Mantieni image/build, volumes, depends_on e la rete default già esistenti.
+# Snippet to adapt into the project's compose.yaml (do NOT run it directly).
+# Keep the existing image/build, volumes, depends_on and default network.
 services:
   nginx:
-    # image: nginx:alpine   # oppure build: ...
-    # RIMUOVI la pubblicazione della porta 80: NON usare ports: ["80:80"].
+    # image: nginx:alpine   # or build: ...
+    # REMOVE port 80 publishing: do NOT use ports: ["80:80"].
     expose:
       - "80"
     labels:
       - traefik.enable=true
       - traefik.docker.network=dev-proxy
-      - traefik.http.routers.mio-progetto.rule=Host(`app.mio-progetto.localhost`)
-      - traefik.http.routers.mio-progetto.entrypoints=web
-      - traefik.http.routers.mio-progetto.service=mio-progetto
-      - traefik.http.services.mio-progetto.loadbalancer.server.port=80
+      - traefik.http.routers.my-project.rule=Host(`app.my-project.localhost`)
+      - traefik.http.routers.my-project.entrypoints=web
+      - traefik.http.routers.my-project.service=my-project
+      - traefik.http.services.my-project.loadbalancer.server.port=80
     networks:
       - default
       - dev-proxy
