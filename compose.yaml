@@ -1,0 +1,25 @@
+name: dev-proxy
+
+services:
+  traefik:
+    image: traefik:v3.7
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=dev-proxy
+      - --entrypoints.web.address=:80
+      - --log.level=INFO
+    ports:
+      - "127.0.0.1:80:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - dev-proxy
+
+networks:
+  dev-proxy:
+    name: dev-proxy
+    driver: bridge
