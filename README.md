@@ -1,5 +1,7 @@
 # Dev Proxy
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A local, shared HTTP reverse proxy for **Docker Compose (non-Swarm)** projects. Each developer runs a single Traefik instance; all application repositories can be reached at the same time without fighting over port 80.
 
 **Platforms:** macOS and Windows with Docker Desktop + WSL2. **Protocol:** HTTP only, no certificates and no HTTPS configuration. Not intended for production.
